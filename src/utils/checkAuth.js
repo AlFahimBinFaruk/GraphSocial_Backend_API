@@ -14,8 +14,8 @@ const checkAuth = asyncHandler(async (req, res, next) => {
             //verify
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             //get user creds from the token
-            req.user = await User.findById(decoded.id).select("-profileURL");
-            next();
+            const user = await User.findById(decoded.id).select("-profileURL");
+            return user;
         } catch (error) {
             throw new AuthenticationError("Not Authorized");
         }

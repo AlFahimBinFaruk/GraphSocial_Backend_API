@@ -1,4 +1,11 @@
 {
+  "name": "graph-social-backend-api",
+  "version": "1.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
   "dependencies": {
     "apollo-server": "^3.8.2",
     "bcrypt": "^5.0.1",
@@ -6,7 +13,11 @@
     "dotenv": "^16.0.1",
     "express-async-handler": "^1.2.0",
     "graphql": "^16.5.0",
+    "graphql-subscriptions": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

@@ -1,13 +1,12 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const asyncHandler = require("express-async-handler");
 const { UserInputError } = require("apollo-server");
 
 //user model
 const User = require("../../models/User");
 
 //register user
-const registerUser = asyncHandler(async (args) => {
+const registerUser = async (args) => {
   const { username, email, password, profileURL } = args;
   // Validate user data
   const { valid, errors } = validateRegisterInput(
@@ -44,10 +43,10 @@ const registerUser = asyncHandler(async (args) => {
     email: newUser.email,
     token: generateToken(newUser.id),
   };
-});
+};
 
 //login user
-const loginUser = asyncHandler(async (args) => {
+const loginUser = async (args) => {
   const { username, password } = args;
   const { errors, valid } = validateLoginInput(username, password);
 
@@ -74,7 +73,7 @@ const loginUser = asyncHandler(async (args) => {
     email: user.email,
     token: generateToken(user.id),
   };
-});
+};
 
 //genarate token
 const generateToken = (id) => {
