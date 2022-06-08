@@ -8,14 +8,16 @@ const deleteCommentResolver=require("./commentsResolvers/deleteComment")
 const createPostResolver = require("./postResolvers/createPost");
 const likePostResolver = require("./postResolvers/likePost");
 const deletePostResolver = require("./postResolvers/deletePost");
+
 module.exports = {
   Post: {
     likeCount: (parent) => parent.likes.length,
-    commentCount: (parent) => parent.comments.length,
+    commentCount: (parent) => parent.comments.length
   },
   Query: {
     ...getPostResolver.Query,
     ...getPostsResolver.Query,
+   
   },
   Mutation: {
     ...loginResolver.Mutation,

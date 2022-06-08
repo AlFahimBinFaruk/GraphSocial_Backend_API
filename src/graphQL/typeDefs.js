@@ -1,6 +1,10 @@
 const { gql } = require("apollo-server-express");
 //these are the things that we can query
 module.exports = gql`
+  type PostList {
+    posts: [Post]
+    totalPostCount: Int!
+  }
   type Post {
     id: ID!
     body: String!
@@ -26,7 +30,7 @@ module.exports = gql`
     email: String!
     token: String!
     username: String!
-    profileURL:String!
+    profileURL: String!
   }
   input RegisterInput {
     username: String!
@@ -36,7 +40,7 @@ module.exports = gql`
   }
 
   type Query {
-    getPosts: [Post]
+    getPosts(pageNo: String): PostList
     getPost(postId: ID!): Post
   }
 
