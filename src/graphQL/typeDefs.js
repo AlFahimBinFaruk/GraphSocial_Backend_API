@@ -1,5 +1,5 @@
-const { gql } = require("apollo-server");
-
+const { gql } = require("apollo-server-express");
+//these are the things that we can query
 module.exports = gql`
   type Post {
     id: ID!
@@ -26,6 +26,7 @@ module.exports = gql`
     email: String!
     token: String!
     username: String!
+    profileURL:String!
   }
   input RegisterInput {
     username: String!

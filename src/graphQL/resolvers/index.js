@@ -1,21 +1,28 @@
-const postResolvers = require("./post");
-const commentsResolvers = require("./comments");
-const userResolvers = require("./user");
-
+const loginResolver = require("./userResolvers/login");
+const registerResolver = require("./userResolvers/register");
+const subscriptionsResolver = require("./postResolvers/subscription");
+const getPostResolver = require("./postResolvers/getPost");
+const getPostsResolver = require("./postResolvers/getPosts");
+const createPostResolver = require("./postResolvers/createPost");
+const likePostResolver = require("./postResolvers/likePost");
+const deletePostResolver = require("./postResolvers/deletePost");
 module.exports = {
   Post: {
     likeCount: (parent) => parent.likes.length,
     commentCount: (parent) => parent.comments.length,
   },
   Query: {
-    ...postResolvers.Query,
+    ...getPostResolver.Query,
+    ...getPostsResolver.Query,
   },
   Mutation: {
-    ...userResolvers.Mutation,
-    ...postResolvers.Mutation,
-    ...commentsResolvers.Mutation,
+    ...loginResolver.Mutation,
+    ...registerResolver.Mutation,
+    ...createPostResolver.Mutation,
+    ...likePostResolver.Mutation,
+    ...deletePostResolver.Mutation,
   },
   Subscription: {
-    ...postResolvers.Subscription,
+    ...subscriptionsResolver.Subscription,
   },
 };

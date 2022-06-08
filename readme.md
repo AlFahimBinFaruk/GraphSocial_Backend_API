@@ -11,3 +11,5 @@
   * Comment on a post.
   * Delete My Comment.
   * Like/Dislike post
+  * Pagination
+  * Professional Folder structure
