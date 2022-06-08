@@ -1,29 +1,27 @@
 const { AuthenticationError } = require("apollo-server-express");
-const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-const checkAuth = asyncHandler(async (req, res, next) => {
-    let token;
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith("Bearer")
-    ) {
-        try {
-            token = req.headers.authorization.split(" ")[1];
-            //verify
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            //get user creds from the token
-            const user = await User.findById(decoded.id).select("-profileURL");
-            return user;
-        } catch (error) {
-            throw new AuthenticationError("Not Authorized");
-        }
+const checkAuth = async (context) => {
+  // context = { ... headers }
+  const authHeader = context.req.headers.authorization;
+  if (authHeader) {
+    // Bearer ....
+    const token = authHeader.split("Bearer ")[1];
+    if (token) {
+      try {
+        //verify
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        //get user creds from the token
+        const user = await User.findById(decoded.id).select("-profileURL");
+        return user;
+      } catch (err) {
+        throw new AuthenticationError("Invalid/Expired token");
+      }
     }
-    //if token is not provided..
-    if (!token) {
-        throw new AuthenticationError("Not Autorized and no Token Given.");
-    }
-});
+    throw new Error("Authentication token must be 'Bearer [token]");
+  }
+  throw new Error("Authorization header must be provided");
+};
 
 module.exports = checkAuth;
