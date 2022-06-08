@@ -8,7 +8,7 @@ const Post = require("../../../models/Post");
 module.exports = {
   Mutation: {
     async deleteComment(_, { postId, commentId }, context) {
-      const { username } = checkAuth(context);
+      const { username } = await checkAuth(context);
       //delete comment
       const post = await Post.findById(postId);
 

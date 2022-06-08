@@ -3,6 +3,8 @@ const registerResolver = require("./userResolvers/register");
 const subscriptionsResolver = require("./postResolvers/subscription");
 const getPostResolver = require("./postResolvers/getPost");
 const getPostsResolver = require("./postResolvers/getPosts");
+const createCommentResolver=require("./commentsResolvers/createComment");
+const deleteCommentResolver=require("./commentsResolvers/deleteComment")
 const createPostResolver = require("./postResolvers/createPost");
 const likePostResolver = require("./postResolvers/likePost");
 const deletePostResolver = require("./postResolvers/deletePost");
@@ -21,6 +23,8 @@ module.exports = {
     ...createPostResolver.Mutation,
     ...likePostResolver.Mutation,
     ...deletePostResolver.Mutation,
+    ...createCommentResolver.Mutation,
+    ...deleteCommentResolver.Mutation
   },
   Subscription: {
     ...subscriptionsResolver.Subscription,

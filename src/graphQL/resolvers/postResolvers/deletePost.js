@@ -6,7 +6,7 @@ const checkAuth = require("../../../utils/checkAuth");
 module.exports = {
   Mutation: {
     async deletePost(_, { postId }, context) {
-      const user = checkAuth(context);
+      const user = await checkAuth(context);
       try {
         const post = await Post.findById(postId);
         if (user.username === post.username) {
