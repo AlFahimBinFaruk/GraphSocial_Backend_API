@@ -6,10 +6,6 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    username: {
-      type: String,
-      required: true,
-    },
     comments: [
       {
         body: String,
@@ -25,7 +21,7 @@ const postSchema = new Schema(
     ],
     user: {
       type: Schema.Types.ObjectId,
-      ref: "Users",
+      ref: "User",
     },
   },
   {

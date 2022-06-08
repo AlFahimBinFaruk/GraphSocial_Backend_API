@@ -12,7 +12,6 @@ module.exports = {
       const newPost = await Post.create({
         body,
         user: user.id,
-        username: user.username,
       });
 
       context.pubsub.publish("NEW_POST", {

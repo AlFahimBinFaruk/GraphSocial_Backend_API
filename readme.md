@@ -13,3 +13,4 @@
   * Like/Dislike post
   * Pagination
   * Professional Folder structure
+  * Relational Database Models of MongoDB using GraphQl.
