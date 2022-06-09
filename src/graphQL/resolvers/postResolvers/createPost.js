@@ -14,9 +14,9 @@ module.exports = {
         user: user.id,
       });
 
-      context.pubsub.publish("NEW_POST", {
-        newPost,
-      });
+      // context.pubsub.publish("NEW_POST", {
+      //   newPost,
+      // });
 
       return newPost;
     },
