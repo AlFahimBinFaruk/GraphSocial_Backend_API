@@ -9,7 +9,8 @@ module.exports = {
       const user = await checkAuth(context);
       try {
         const post = await Post.findById(postId);
-        if (user.username === post.username) {
+        //objectId type have to be converted into string before comparing..
+        if (user._id.toString() === post.user.toString()) {
           await post.delete();
           return "Post deleted successfully";
         } else {

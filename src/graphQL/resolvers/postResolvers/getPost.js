@@ -4,7 +4,7 @@ module.exports = {
   Query: {
     async getPost(_, { postId }) {
       try {
-        const post = await Post.findById(postId);
+        const post = await Post.findById(postId).populate("user");
         if (post) {
           return post;
         } else {
